@@ -1,0 +1,8 @@
+[
+  { "id": "1", "name": "test1", "bodyPart": "test1", "target": "test1", "equipment": "test1" },
+  { "id": "2", "name": "test2", "bodyPart": "test2", "target": "test2", "equipment": "test2" },
+  { "id": "3", "name": "test3", "bodyPart": "test3", "target": "test3", "equipment": "test3" },
+  { "id": "4", "name": "test4", "bodyPart": "test4", "target": "test4", "equipment": "test4" },
+  { "id": "5", "name": "test5", "bodyPart": "test5", "target": "test5", "equipment": "test5" },
+  { "id": "6", "name": "test6", "bodyPart": "test6", "target": "test6", "equipment": "test6" }
+]
