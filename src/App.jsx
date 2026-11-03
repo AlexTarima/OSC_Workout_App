@@ -6,6 +6,9 @@ import Signup from './Components/Signup';
 import Brainrot from "./Components/Brainrot";
 import Home from './Pages/Home';
 import Session from './Components/Session';
+import WorkoutList from "./Components/WorkoutList";
+import Nutrition from './Components/Nutrition';
+import CreateExercise from './Components/CreateExercise';
 
 const THEMES = ['dark', 'light', 'colorblind'];
 
@@ -24,29 +27,16 @@ function App() {
   }, [theme]);
 
   return (
-    <Router>
+    <Router basename="/OSC_Workout_App">
       <div className="App">
         <nav >
-          <NavLink 
-            to="/">
-            Home
-          </NavLink>
-          <NavLink 
-            to="/login" 
-
-          >
-            Login
-          </NavLink>
-          <NavLink 
-            to="/signup" 
-          >
-            Signup
-          </NavLink>
-          <NavLink 
-            to="/brainrot" 
-          >
-            Brainrot
-          </NavLink>
+          <NavLink to="/">*Home*</NavLink>
+          <NavLink to="/login">!Login!</NavLink>
+          <NavLink to="/signup">*Signup*</NavLink>
+          <NavLink to="/brainrot">!Brainrot!</NavLink>
+          <NavLink to="/workouts">*Workouts*</NavLink>
+          <NavLink to="/nutrition">!Nutrition!</NavLink>
+          <NavLink to="/createExercise">*Create_Exercise*</NavLink>
         </nav>
 
         <div>
@@ -56,6 +46,9 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/brainrot" element={<Brainrot />} />
             <Route path="/session" element={<Session />} />
+            <Route path="/workouts" element={<WorkoutList />} />
+            <Route path="/nutrition" element={<Nutrition />} />
+            <Route path="/createExercise" element={<CreateExercise />} />
           </Routes>
         </div>
       </div>

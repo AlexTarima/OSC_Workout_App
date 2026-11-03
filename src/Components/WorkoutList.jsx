@@ -1,3 +1,8 @@
+import exercise_data from '../Data/exercises.json';
+import {STORAGE_KEY} from "./CreateExercise.jsx";
+// FOR USE INSTEAD OF API KEY
+
+
 // generated list of workouts based on relevance to user, muscle group or frequently used
 import React, {useState, useEffect, useMemo} from 'react';
 
@@ -14,6 +19,7 @@ const WorkoutList = ({onSelectExercise, userFavorites = []}) => {
   //track frequently used exercises locally or via props
   const [frequentlyUsedIds, setFrequentlyUsedIds] = useState(userFavorites);
 
+  /*
   useEffect(() => {
     const fetchExercises = async () => {
       try {
@@ -32,20 +38,29 @@ const WorkoutList = ({onSelectExercise, userFavorites = []}) => {
         }
 
         const data = await response.json();
-        setExercises(data);
+        setExercises(data); // data = exercise_data
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false);
+        setLoading(false);  // I have no clue if this is necessary, will include
       }
-    };
+    };*/
 
-    fetchExercises();
+  // only have to copy these 2 lines, everything else is redundant
+  useEffect(() => {
+
+    let currentExercises = [];
+    let storedExercises = localStorage.getItem(STORAGE_KEY); // returns null if empty
+    if (storedExercises != null) {currentExercises = JSON.parse(storedExercises);}
+    let mergedData = [...exercise_data, ...currentExercises]
+
+    setExercises(mergedData);
+    setLoading(false);
   }, []);
 
   //Extract unique muscle groups/body parts dynamically
   const muscleGroups = useMemo(() => {
-    const groups = new Set(exercises.map((ex) => ex.bodyPart).filter(Boolean));
+    const groups = new Set(exercises.map((ex) => ex.bodyPart).filter(Boolean));     // Exercise column: bodyPart
     return ['all', ...Array.from(groups)];
   }, [exercises]);
 
@@ -53,7 +68,7 @@ const WorkoutList = ({onSelectExercise, userFavorites = []}) => {
   const filteredExercises = useMemo(() => {
     return exercises.filter((exercise) => {
       //1. Frequently Used filter
-      if (viewTab === 'frequently_used' && !frequentlyUsedIds.includes(exercise.id)) {
+      if (viewTab === 'frequently_used' && !frequentlyUsedIds.includes(exercise.id)) {      // Exercise column:: exercise.id
         return false;
       }
 
